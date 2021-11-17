@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Crop</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <style>
+        .without_ampm::-webkit-datetime-edit-ampm-field {
+            display: none !important;
+        }
+        input[type=time]::-webkit-clear-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -o-appearance: none;
+            -ms-appearance:none;
+            appearance: none;
+            display: none !important;
+            margin: -10px; 
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <br /><br />
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <h1 style="text-align: center;">Video Crop</h1>
+          <form action="/api/v1" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="video">Select video to crop:</label><br>
+              <input type="file" name="file"/>
+            </div>
+            <div class="form-group">
+              <label for="to">Starting Time:</label>
+              <input type="text"  class="form-control without_ampm" placeholder="hh:mm:ss" required pattern="^((\d+:)?\d+:)?\d*$" id="timepicker1" name="timeFrom" >
+            </div>
+            <div class="form-group">
+              <label for="to">Duration:</label>
+              <input type="text" pattern="^((\d+:)?\d+:)?\d*$" placeholder="hh:mm:ss" required class="form-control without_ampm" name="timeTo" >
+            </div>
+            <br />
+            <div class="form-group">
+              <button class="btn btn-outline-primary btn-block">
+                Convert
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+    <script>
+        $('#timepicker1').timepicker({
+            defaultTime: 'value',
+            minuteStep: 1,
+            disableFocus: true,
+            template: 'dropdown',
+            showMeridian:false
+        });
+    </script>
+  </body>
+</html>
